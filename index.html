@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adventures of Mr. Meow & Mrs. Meow</title>
+  <meta name="description" content="Two curious cats exploring the most beautiful corners of the world, one painting at a time. Daily AI-generated art featuring Mr. Meow and Mrs. Meow in the wholesome world of Purrnia.">
+  <meta property="og:title" content="Cubix Meow - Two Cats, One Beautiful World">
+  <meta property="og:description" content="Daily adventures of Mr. Meow & Mrs. Meow. Wholesome, warm, and full of wonder.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://cubixmeow.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #faf5ec; --cream-deep: #f3ead8; --warm-orange: #e8944a; --warm-orange-soft: #f0b87a;
+      --moss-green: #7a9b6d; --moss-light: #a8c99b; --sky-soft: #9bbcd4; --sky-light: #c8dde9;
+      --rose-soft: #e4a0a0; --rose-light: #f0c8c8; --earth-brown: #8b6f4e; --text-warm: #5a4332;
+      --text-muted: #9a8574; --card-bg: rgba(255, 252, 245, 0.75); --card-hover: rgba(248, 235, 210, 0.9);
+      --border-soft: rgba(180, 150, 110, 0.15); --wash-accent: rgba(232, 148, 74, 0.12);
+      --ember-amber: #d4883a; --lullaby-indigo: #7b8fb8; --terrace-gold: #c9a832;
+      --canyon-rose: #c48a8a; --tundra-lilac: #a68ab8; --archive-emerald: #6a8a6a;
+      --canopy-pink: #c49ab0; --bazaar-berry: #9a5a6a;
+    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { overflow-x:hidden; }
+    body { background:var(--cream); font-family:'DM Sans',sans-serif; color:var(--text-warm); overflow-x:hidden; -webkit-font-smoothing:antialiased; position:relative; width:100%; }
+    @keyframes floatBlob { 0%{transform:translate(0,0) scale(1)} 33%{transform:translate(15px,-20px) scale(1.05)} 66%{transform:translate(-10px,10px) scale(.97)} 100%{transform:translate(5px,-5px) scale(1.02)} }
+    @keyframes fadeSlideUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes gentleBounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+    @keyframes pawDrift { 0%{opacity:0;transform:scale(.5) rotate(-20deg)} 50%{opacity:.12;transform:scale(1) rotate(0)} 100%{opacity:0;transform:scale(.8) rotate(10deg)} }
+    @keyframes glowPulse { 0%,100%{opacity:.4;transform:scale(1)} 50%{opacity:.7;transform:scale(1.05)} }
+    @keyframes shimmer { 0%{background-position:-200% center} 100%{background-position:200% center} }
+    .reveal { opacity:0; transform:translateY(30px); transition:opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+    .blob { position:absolute; border-radius:50% 40% 60% 50%/40% 50% 50% 60%; filter:blur(40px); pointer-events:none; z-index:0; }
+    .nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:16px 32px; display:flex; justify-content:space-between; align-items:center; transition:all .4s ease; }
+    .nav.scrolled { background:rgba(250,245,236,.92); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-bottom:1px solid var(--border-soft); }
+    .nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+    .nav-logo-icon { font-size:24px; }
+    .nav-logo-text { font-family:'Caveat',cursive; font-size:26px; font-weight:700; color:var(--text-warm); letter-spacing:-.5px; }
+    .nav-links { display:flex; gap:32px; align-items:center; }
+    .nav-links a { font-size:14px; color:var(--text-muted); text-decoration:none; letter-spacing:.5px; font-weight:500; transition:color .3s; }
+    .nav-links a:hover { color:var(--warm-orange); }
+    .nav-mobile-toggle { display:none; background:none; border:none; cursor:pointer; width:32px; height:32px; position:relative; }
+    .nav-mobile-toggle span { display:block; width:22px; height:2px; background:var(--text-warm); border-radius:2px; position:absolute; left:5px; transition:all .3s ease; }
+    .nav-mobile-toggle span:nth-child(1){top:9px} .nav-mobile-toggle span:nth-child(2){top:15px} .nav-mobile-toggle span:nth-child(3){top:21px}
+    .hero { min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:120px 24px 80px; position:relative; z-index:1; }
+    .hero-badge { display:inline-block; padding:6px 20px; background:rgba(232,148,74,.1); border-radius:24px; margin-bottom:24px; border:1px solid rgba(232,148,74,.15); animation:fadeSlideUp 1s ease-out both; }
+    .hero-badge span { font-size:13px; color:var(--warm-orange); letter-spacing:2px; text-transform:uppercase; font-weight:500; }
+    .hero h1 { font-family:'Caveat',cursive; font-size:clamp(52px,8vw,96px); font-weight:700; line-height:1.05; color:var(--text-warm); margin-bottom:8px; animation:fadeSlideUp 1s ease-out .15s both; }
+    .hero-subtitle { font-family:'Playfair Display',serif; font-size:clamp(18px,2.5vw,24px); color:var(--text-muted); font-style:italic; font-weight:400; margin-bottom:48px; animation:fadeSlideUp 1s ease-out .3s both; }
+    .hero-caption-wrap { min-height:56px; display:flex; align-items:center; justify-content:center; position:relative; width:100%; animation:fadeSlideUp 1s ease-out .45s both; }
+    .hero-caption { font-family:'Caveat',cursive; font-size:22px; color:var(--warm-orange); position:absolute; width:100%; padding:0 16px; text-align:center; opacity:0; transform:translateY(12px); transition:opacity .5s ease, transform .5s ease; pointer-events:none; }
+    .hero-caption.active { opacity:1; transform:translateY(0); pointer-events:auto; }
+    .hero-caption.exit { opacity:0; transform:translateY(-12px); }
+    .hero-cta { animation:fadeSlideUp 1s ease-out .6s both; position:relative; z-index:2; margin-top:12px; }
+    .hero-cta-btn { display:inline-flex; align-items:center; gap:10px; padding:16px 44px; background:linear-gradient(135deg,var(--warm-orange) 0%,#d4782a 100%); color:white; border-radius:32px; text-decoration:none; font-family:'Caveat',cursive; font-size:24px; font-weight:600; letter-spacing:.3px; transition:all .3s ease; box-shadow:0 6px 28px rgba(232,148,74,.35); border:none; cursor:pointer; }
+    .hero-cta-btn:hover { transform:translateY(-3px) scale(1.02); box-shadow:0 12px 40px rgba(232,148,74,.45); }
+    .scroll-indicator { position:absolute; bottom:40px; animation:gentleBounce 2.5s ease-in-out infinite; opacity:.4; }
+    .hero-glow { position:absolute; width:min(500px,90vw); height:min(500px,90vw); border-radius:50%; background:radial-gradient(circle,rgba(232,148,74,.08) 0%,rgba(122,155,109,.05) 40%,transparent 70%); top:50%; left:50%; transform:translate(-50%,-55%); pointer-events:none; }
+    .section { padding:80px 24px 100px; position:relative; z-index:1; }
+    .section-label { font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--text-muted); margin-bottom:12px; text-align:center; }
+    .section-title { font-family:'Caveat',cursive; font-size:clamp(36px,5vw,52px); color:var(--text-warm); font-weight:600; text-align:center; }
+    .section-divider { height:3px; max-width:120px; margin:20px auto 0; background:linear-gradient(90deg,transparent,var(--warm-orange-soft),transparent); border-radius:2px; }
+    .section-desc { font-size:15px; color:var(--text-muted); max-width:540px; margin:24px auto 0; line-height:1.7; text-align:center; }
+    .cats-row { display:flex; justify-content:center; gap:80px; flex-wrap:wrap; max-width:700px; margin:0 auto; }
+    .cat-card { display:flex; flex-direction:column; align-items:center; gap:16px; }
+    .cat-face { width:180px; height:180px; border-radius:50% 50% 45% 45%; position:relative; overflow:visible; }
+    .cat-name { font-family:'Caveat',cursive; font-size:28px; color:var(--text-warm); margin:0 0 4px; text-align:center; }
+    .cat-desc { font-size:13px; color:var(--text-muted); font-style:italic; margin:0; text-align:center; max-width:200px; }
+    .cats-blurb { text-align:center; max-width:520px; margin:48px auto 0; font-family:'Playfair Display',serif; font-size:17px; line-height:1.8; color:var(--text-muted); font-style:italic; }
+    .backstory-teaser { max-width:600px; margin:48px auto 0; text-align:center; }
+    .backstory-text { font-size:15px; line-height:1.8; color:var(--text-muted); margin-bottom:28px; }
+    .backstory-link { display:inline-flex; align-items:center; gap:8px; padding:12px 28px; background:rgba(232,148,74,.1); color:var(--warm-orange); border-radius:24px; text-decoration:none; font-family:'DM Sans',sans-serif; font-size:14px; font-weight:600; letter-spacing:.3px; transition:all .3s ease; border:1px solid rgba(232,148,74,.2); }
+    .backstory-link:hover { background:rgba(232,148,74,.18); transform:translateY(-2px); box-shadow:0 4px 16px rgba(232,148,74,.15); }
+    .ear{position:absolute;top:-12px;width:0;height:0;border-left:18px solid transparent;border-right:18px solid transparent;border-radius:4px}
+    .ear-left{left:28px;transform:rotate(-10deg)} .ear-right{right:28px;transform:rotate(10deg)}
+    .ear-inner{position:absolute;width:0;height:0;border-left:10px solid transparent;border-right:10px solid transparent;border-bottom:20px solid #f4b8b8;border-radius:3px}
+    .ear-inner-left{top:-2px;left:36px;transform:rotate(-10deg)} .ear-inner-right{top:-2px;right:36px;transform:rotate(10deg)}
+    .eye{position:absolute;top:55px;width:28px;height:30px;background:white;border-radius:50%;box-shadow:inset 0 2px 4px rgba(0,0,0,.1)}
+    .eye-left{left:48px} .eye-right{right:48px}
+    .pupil{position:absolute;top:6px;width:16px;height:18px;border-radius:50%}
+    .eye-left .pupil{left:7px} .eye-right .pupil{left:5px}
+    .pupil-highlight{position:absolute;top:3px;left:3px;width:6px;height:6px;background:white;border-radius:50%}
+    .nose{position:absolute;top:88px;left:50%;transform:translateX(-50%);width:12px;height:8px;background:#e8918a;border-radius:50% 50% 40% 40%}
+    .mouth{position:absolute;top:95px;left:50%;transform:translateX(-50%)}
+    .whisker{position:absolute;top:88px;width:40px;height:1.5px;background:#c4a882;border-radius:1px}
+    .backpack{position:absolute;bottom:15px;right:-8px;width:28px;height:32px;background:linear-gradient(135deg,#8B6914,#6B4F12);border-radius:4px 4px 6px 6px;box-shadow:0 2px 6px rgba(0,0,0,.2);border:1.5px solid #5a4010}
+    .backpack-clasp{position:absolute;top:8px;left:50%;transform:translateX(-50%);width:10px;height:6px;border:1.5px solid #d4a540;border-radius:2px}
+    .backpack-strap{position:absolute;top:-6px;left:5px;width:18px;height:8px;border:2px solid #8B6914;border-bottom:none;border-radius:8px 8px 0 0}
+    .flower{position:absolute;top:4px;right:16px}
+    .petal{position:absolute;width:12px;height:12px;border-radius:50%}
+    .flower-center{position:absolute;top:-3px;left:-3px;width:6px;height:6px;background:#ffd866;border-radius:50%;z-index:1}
+    .world-intro-text { max-width:640px; margin:36px auto 0; font-family:'Playfair Display',serif; font-size:16px; line-height:1.9; color:var(--text-muted); text-align:center; font-style:italic; }
+    .world-quote { max-width:500px; margin:40px auto 0; padding:28px 32px; background:rgba(232,148,74,.04); border-left:3px solid var(--warm-orange-soft); border-radius:0 16px 16px 0; font-family:'Caveat',cursive; font-size:22px; color:var(--warm-orange); line-height:1.5; }
+    .regions-grid { max-width:960px; margin:48px auto 0; display:grid; grid-template-columns:repeat(4, 1fr); gap:16px; }
+    .region-card { background:var(--card-bg); border-radius:20px; padding:28px 20px 24px; text-align:center; border:1px solid var(--border-soft); position:relative; overflow:hidden; transition:all .4s ease; cursor:default; }
+    .region-card:hover { transform:translateY(-6px); box-shadow:0 12px 40px rgba(180,130,80,.12); }
+    .region-card .region-glow { position:absolute; top:-20px; left:50%; transform:translateX(-50%); width:80px; height:80px; border-radius:50%; filter:blur(25px); opacity:.25; pointer-events:none; transition:opacity .4s ease; }
+    .region-card:hover .region-glow { opacity:.45; }
+    .region-card .region-icon { font-size:32px; margin-bottom:10px; position:relative; }
+    .region-card h4 { font-family:'Caveat',cursive; font-size:19px; color:var(--text-warm); margin:0 0 6px; position:relative; line-height:1.2; }
+    .region-card .region-framework { font-size:11px; letter-spacing:1px; text-transform:uppercase; position:relative; margin-bottom:8px; font-weight:500; }
+    .region-card p { font-size:12.5px; color:var(--text-muted); line-height:1.6; position:relative; }
+    .magic-intro { max-width:600px; margin:36px auto 0; text-align:center; font-size:15px; line-height:1.8; color:var(--text-muted); }
+    .frameworks-grid { max-width:900px; margin:40px auto 0; display:grid; grid-template-columns:repeat(4, 1fr); gap:14px; }
+    .framework-pill { padding:20px 16px; border-radius:16px; background:var(--card-bg); border:1px solid var(--border-soft); text-align:center; transition:all .3s ease; cursor:default; }
+    .framework-pill:hover { transform:translateY(-3px); box-shadow:0 8px 24px rgba(180,130,80,.1); }
+    .framework-pill .fw-icon { font-size:24px; margin-bottom:8px; }
+    .framework-pill h5 { font-family:'Caveat',cursive; font-size:17px; color:var(--text-warm); margin:0 0 4px; }
+    .framework-pill .fw-theme { font-size:11px; color:var(--text-muted); letter-spacing:.5px; }
+    .characters-grid { max-width:960px; margin:48px auto 0; display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:16px; }
+    .char-card { background:var(--card-bg); border-radius:20px; padding:28px 20px 24px; text-align:center; border:1px solid var(--border-soft); position:relative; overflow:hidden; transition:all .4s ease; }
+    .char-card:hover { transform:translateY(-5px); box-shadow:0 10px 32px rgba(180,130,80,.12); }
+    .char-glow { position:absolute; top:-10px; left:50%; transform:translateX(-50%); width:60px; height:60px; border-radius:50%; filter:blur(20px); opacity:.3; pointer-events:none; }
+    .char-card .char-emoji { font-size:36px; margin-bottom:10px; position:relative; }
+    .char-card h4 { font-family:'Caveat',cursive; font-size:22px; color:var(--text-warm); margin:0 0 2px; position:relative; }
+    .char-card .char-species { font-size:11px; color:var(--text-muted); letter-spacing:1px; text-transform:uppercase; margin-bottom:6px; position:relative; }
+    .char-card .char-role { font-size:12px; font-weight:600; margin-bottom:8px; position:relative; }
+    .char-card p.char-desc-text { font-size:12.5px; color:var(--text-muted); line-height:1.6; position:relative; }
+    .art-card { max-width:720px; margin:0 auto 60px; background:var(--card-bg); border-radius:24px; padding:40px; border:1px solid var(--border-soft); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); position:relative; overflow:hidden; }
+    .art-card-glow { position:absolute; top:0; left:0; right:0; bottom:0; background:radial-gradient(circle at 20% 30%,rgba(232,148,74,.06) 0%,transparent 50%),radial-gradient(circle at 80% 70%,rgba(122,155,109,.06) 0%,transparent 50%); pointer-events:none; }
+    .art-card-header { display:flex; align-items:center; gap:8px; margin-bottom:20px; position:relative; }
+    .art-card-header h3 { font-family:'Caveat',cursive; font-size:26px; color:var(--text-warm); }
+    .tags { display:flex; flex-wrap:wrap; gap:10px; position:relative; }
+    .tag { padding:8px 16px; border-radius:20px; font-size:13px; font-weight:500; }
+    .locations-grid { max-width:900px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:16px; }
+    .location-card { background:var(--card-bg); border-radius:16px; padding:24px 20px; text-align:center; transition:all .4s ease; border:1px solid var(--border-soft); position:relative; overflow:hidden; cursor:default; }
+    .location-card:hover { transform:translateY(-6px) scale(1.02); box-shadow:0 12px 40px rgba(180,130,80,.15); background:linear-gradient(135deg,var(--card-hover) 0%,var(--card-bg) 100%); }
+    .location-card .emoji { font-size:32px; margin-bottom:10px; position:relative; }
+    .location-card h4 { font-family:'Caveat',cursive; font-size:20px; color:var(--text-warm); margin:0 0 4px; position:relative; }
+    .location-card p { font-size:12px; color:var(--text-muted); margin:0; position:relative; letter-spacing:1px; text-transform:uppercase; }
+    .location-card .wash { position:absolute; top:0; left:0; right:0; bottom:0; opacity:.2; transition:opacity .4s ease; pointer-events:none; }
+    .location-card:hover .wash { opacity:.5; }
+    .locations-more { text-align:center; font-family:'Caveat',cursive; font-size:20px; color:var(--text-muted); margin-top:32px; }
+    .themes-list { max-width:640px; margin:40px auto 0; display:flex; flex-direction:column; gap:12px; }
+    .theme-item { display:flex; align-items:flex-start; gap:14px; padding:16px 20px; background:var(--card-bg); border-radius:14px; border:1px solid var(--border-soft); }
+    .theme-icon { font-size:20px; flex-shrink:0; margin-top:2px; }
+    .theme-text { font-family:'Caveat',cursive; font-size:20px; color:var(--text-warm); line-height:1.3; }
+    .cta-card { max-width:560px; margin:0 auto; padding:48px 40px; border-radius:28px; background:linear-gradient(135deg,rgba(232,148,74,.08) 0%,rgba(122,155,109,.06) 50%,rgba(155,188,212,.06) 100%); border:1px solid var(--border-soft); position:relative; overflow:hidden; text-align:center; }
+    .cta-paw { position:absolute; top:-20px; right:-20px; font-size:80px; opacity:.08; transform:rotate(15deg); }
+    .cta-card h2 { font-family:'Caveat',cursive; font-size:38px; color:var(--text-warm); margin-bottom:12px; }
+    .cta-card > p { font-size:15px; color:var(--text-muted); line-height:1.7; margin-bottom:32px; }
+    .cta-btn { display:inline-flex; align-items:center; gap:10px; padding:14px 36px; background:linear-gradient(135deg,var(--warm-orange) 0%,#d4782a 100%); color:white; border-radius:28px; text-decoration:none; font-family:'DM Sans',sans-serif; font-size:15px; font-weight:600; letter-spacing:.5px; transition:all .3s ease; box-shadow:0 4px 20px rgba(232,148,74,.3); border:none; cursor:pointer; }
+    .cta-btn:hover { transform:translateY(-2px); box-shadow:0 8px 30px rgba(232,148,74,.4); }
+    .footer { padding:40px 24px 32px; text-align:center; position:relative; z-index:1; }
+    .footer-logo { display:flex; justify-content:center; align-items:center; gap:8px; margin-bottom:12px; }
+    .footer-logo span:last-child { font-family:'Caveat',cursive; font-size:20px; color:var(--text-warm); font-weight:600; }
+    .footer p { font-size:12px; color:var(--text-muted); letter-spacing:1px; }
+    .footer .copyright { font-size:11px; margin-top:16px; opacity:.6; }
+    .paw-print { position:absolute; pointer-events:none; z-index:0; }
+    @media (max-width:768px) {
+      .nav{padding:12px 16px} .nav-links{display:none} .nav-mobile-toggle{display:block}
+      .nav-links.open{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(250,245,236,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:24px;gap:20px;border-bottom:1px solid var(--border-soft)}
+      .hero{padding:100px 20px 60px;min-height:90vh} .hero h1{font-size:clamp(44px,12vw,72px)}
+      .hero-subtitle{font-size:18px;margin-bottom:36px} .hero-badge span{font-size:11px;letter-spacing:1.5px}
+      .hero-caption{font-size:19px;padding:0 12px} .hero-caption-wrap{min-height:64px}
+      .hero-cta-btn{font-size:20px;padding:14px 32px}
+      .scroll-indicator{bottom:24px}
+      .section{padding:60px 16px 72px} .section-title{font-size:clamp(32px,8vw,44px)} .section-desc{font-size:14px;padding:0 8px}
+      .cats-row{gap:40px} .cat-face{width:150px;height:150px}
+      .ear{top:-10px;border-left-width:15px;border-right-width:15px} .ear-left{left:22px} .ear-right{right:22px}
+      .ear-inner{border-left-width:8px;border-right-width:8px;border-bottom-width:16px} .ear-inner-left{left:30px} .ear-inner-right{right:30px}
+      .eye{top:44px;width:24px;height:26px} .eye-left{left:38px} .eye-right{right:38px}
+      .pupil{width:14px;height:16px;top:5px} .eye-left .pupil{left:5px} .eye-right .pupil{left:4px} .pupil-highlight{width:5px;height:5px}
+      .nose{top:72px;width:10px;height:7px} .mouth{top:78px} .whisker{width:32px}
+      .whisker[style*="left:120px"]{left:100px!important} .whisker[style*="right:120px"]{right:100px!important}
+      .whisker[style*="top:84px"]{top:68px!important} .whisker[style*="top:92px"]{top:76px!important}
+      .backpack{bottom:10px;right:-6px;width:24px;height:28px} .backpack-strap{width:15px;top:-5px;left:4px} .backpack-clasp{width:8px;height:5px}
+      .flower{top:2px;right:12px} .cat-name{font-size:24px}
+      .cats-blurb{font-size:15px;padding:0 8px;margin-top:36px} .backstory-teaser{padding:0 8px} .backstory-text{font-size:14px}
+      .regions-grid{grid-template-columns:repeat(2,1fr);gap:12px} .region-card{padding:22px 16px 20px} .region-card h4{font-size:17px} .region-card p{font-size:11.5px}
+      .frameworks-grid{grid-template-columns:repeat(2,1fr);gap:10px} .framework-pill{padding:16px 12px} .framework-pill h5{font-size:15px}
+      .characters-grid{grid-template-columns:repeat(2,1fr);gap:12px} .char-card{padding:22px 16px 20px}
+      .art-card{margin:0 0 48px;padding:24px 16px;border-radius:20px} .art-card-header h3{font-size:22px} .tags{gap:8px} .tag{padding:6px 12px;font-size:12px}
+      .locations-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
+      .location-card{padding:18px 14px;border-radius:14px} .location-card .emoji{font-size:28px;margin-bottom:8px} .location-card h4{font-size:17px} .location-card p{font-size:11px}
+      .locations-more{font-size:18px} .themes-list{gap:10px} .theme-text{font-size:18px}
+      .cta-card{padding:32px 20px;margin:0;border-radius:22px} .cta-card h2{font-size:32px} .cta-card > p{font-size:14px;margin-bottom:24px} .cta-btn{padding:12px 28px;font-size:14px}
+      .blob{display:none} .paw-print{display:none}
+      .world-intro-text{font-size:15px;padding:0 8px} .world-quote{font-size:19px;padding:22px 24px;margin-left:16px;margin-right:16px}
+    }
+    @media (max-width:380px) {
+      .hero h1{font-size:40px} .hero-caption{font-size:17px} .nav-logo-text{font-size:22px} .cat-face{width:130px;height:130px}
+      .eye{top:38px;width:20px;height:22px} .eye-left{left:32px} .eye-right{right:32px} .pupil{width:12px;height:14px} .nose{top:62px} .mouth{top:68px}
+      .regions-grid{grid-template-columns:1fr} .frameworks-grid{grid-template-columns:1fr 1fr} .characters-grid{grid-template-columns:1fr} .locations-grid{grid-template-columns:repeat(2,1fr)}
+    }
+  </style>
+</head>
+<body>
+
+
+<!-- Blobs -->
+<div class="blob" style="width:500px;height:500px;top:-100px;left:-150px;background:radial-gradient(ellipse at 40% 40%,var(--warm-orange) 0%,transparent 70%);opacity:.08;animation:floatBlob 12s ease-in-out infinite alternate"></div>
+<div class="blob" style="width:400px;height:400px;top:200px;left:70%;background:radial-gradient(ellipse at 40% 40%,var(--moss-green) 0%,transparent 70%);opacity:.06;animation:floatBlob 15s ease-in-out 3s infinite alternate"></div>
+<div class="blob" style="width:350px;height:350px;top:800px;left:10%;background:radial-gradient(ellipse at 40% 40%,var(--sky-soft) 0%,transparent 70%);opacity:.07;animation:floatBlob 17s ease-in-out 5s infinite alternate"></div>
+<div class="blob" style="width:450px;height:450px;top:1400px;left:60%;background:radial-gradient(ellipse at 40% 40%,var(--rose-soft) 0%,transparent 70%);opacity:.06;animation:floatBlob 14s ease-in-out 2s infinite alternate"></div>
+<div class="blob" style="width:300px;height:300px;top:2200px;left:20%;background:radial-gradient(ellipse at 40% 40%,var(--warm-orange-soft) 0%,transparent 70%);opacity:.05;animation:floatBlob 16s ease-in-out 4s infinite alternate"></div>
+<div class="blob" style="width:380px;height:380px;top:3000px;left:75%;background:radial-gradient(ellipse at 40% 40%,var(--moss-light) 0%,transparent 70%);opacity:.06;animation:floatBlob 13s ease-in-out 1s infinite alternate"></div>
+<div class="blob" style="width:320px;height:320px;top:3800px;left:40%;background:radial-gradient(ellipse at 40% 40%,var(--sky-light) 0%,transparent 70%);opacity:.05;animation:floatBlob 18s ease-in-out 6s infinite alternate"></div>
+<div class="blob" style="width:360px;height:360px;top:4600px;left:15%;background:radial-gradient(ellipse at 40% 40%,var(--canopy-pink) 0%,transparent 70%);opacity:.05;animation:floatBlob 15s ease-in-out 3s infinite alternate"></div>
+
+<svg class="paw-print" width="24" height="24" viewBox="0 0 24 24" fill="var(--earth-brown)" style="top:8%;left:5%;transform:rotate(-90deg) scale(0.8);animation:pawDrift 6s ease-in-out 0s infinite">
+  <ellipse cx="12" cy="16" rx="5" ry="4.5"/><circle cx="7" cy="9" r="2.5"/><circle cx="17" cy="9" r="2.5"/><circle cx="4" cy="13" r="2"/><circle cx="20" cy="13" r="2"/>
+</svg>
+<svg class="paw-print" width="24" height="24" viewBox="0 0 24 24" fill="var(--earth-brown)" style="top:18%;left:42%;transform:rotate(-45deg) scale(1.2);animation:pawDrift 8s ease-in-out 1.5s infinite">
+  <ellipse cx="12" cy="16" rx="5" ry="4.5"/><circle cx="7" cy="9" r="2.5"/><circle cx="17" cy="9" r="2.5"/><circle cx="4" cy="13" r="2"/><circle cx="20" cy="13" r="2"/>
+</svg>
+<svg class="paw-print" width="24" height="24" viewBox="0 0 24 24" fill="var(--earth-brown)" style="top:28%;left:79%;transform:rotate(0deg) scale(1.6);animation:pawDrift 10s ease-in-out 3s infinite">
+  <ellipse cx="12" cy="16" rx="5" ry="4.5"/><circle cx="7" cy="9" r="2.5"/><circle cx="17" cy="9" r="2.5"/><circle cx="4" cy="13" r="2"/><circle cx="20" cy="13" r="2"/>
+</svg>
+<svg class="paw-print" width="24" height="24" viewBox="0 0 24 24" fill="var(--earth-brown)" style="top:38%;left:26%;transform:rotate(45deg) scale(0.8);animation:pawDrift 12s ease-in-out 4.5s infinite">
+  <ellipse cx="12" cy="16" rx="5" ry="4.5"/><circle cx="7" cy="9" r="2.5"/><circle cx="17" cy="9" r="2.5"/><circle cx="4" cy="13" r="2"/><circle cx="20" cy="13" r="2"/>
+</svg>
+<svg class="paw-print" width="24" height="24" viewBox="0 0 24 24" fill="var(--earth-brown)" style="top:48%;left:63%;transform:rotate(90deg) scale(1.2);animation:pawDrift 14s ease-in-out 6s infinite">
+  <ellipse cx="12" cy="16" rx="5" ry="4.5"/><circle cx="7" cy="9" r="2.5"/><circle cx="17" cy="9" r="2.5"/><circle cx="4" cy="13" r="2"/><circle cx="20" cy="13" r="2"/>
+</svg>
+<svg class="paw-print" width="24" height="24" viewBox="0 0 24 24" fill="var(--earth-brown)" style="top:58%;left:10%;transform:rotate(135deg) scale(1.6);animation:pawDrift 16s ease-in-out 7.5s infinite">
+  <ellipse cx="12" cy="16" rx="5" ry="4.5"/><circle cx="7" cy="9" r="2.5"/><circle cx="17" cy="9" r="2.5"/><circle cx="4" cy="13" r="2"/><circle cx="20" cy="13" r="2"/>
+</svg>
+<svg class="paw-print" width="24" height="24" viewBox="0 0 24 24" fill="var(--earth-brown)" style="top:68%;left:47%;transform:rotate(180deg) scale(0.8);animation:pawDrift 18s ease-in-out 9s infinite">
+  <ellipse cx="12" cy="16" rx="5" ry="4.5"/><circle cx="7" cy="9" r="2.5"/><circle cx="17" cy="9" r="2.5"/><circle cx="4" cy="13" r="2"/><circle cx="20" cy="13" r="2"/>
+</svg>
+<svg class="paw-print" width="24" height="24" viewBox="0 0 24 24" fill="var(--earth-brown)" style="top:78%;left:84%;transform:rotate(225deg) scale(1.2);animation:pawDrift 20s ease-in-out 10.5s infinite">
+  <ellipse cx="12" cy="16" rx="5" ry="4.5"/><circle cx="7" cy="9" r="2.5"/><circle cx="17" cy="9" r="2.5"/><circle cx="4" cy="13" r="2"/><circle cx="20" cy="13" r="2"/>
+</svg>
+<svg class="paw-print" width="24" height="24" viewBox="0 0 24 24" fill="var(--earth-brown)" style="top:88%;left:31%;transform:rotate(270deg) scale(1.6);animation:pawDrift 22s ease-in-out 12s infinite">
+  <ellipse cx="12" cy="16" rx="5" ry="4.5"/><circle cx="7" cy="9" r="2.5"/><circle cx="17" cy="9" r="2.5"/><circle cx="4" cy="13" r="2"/><circle cx="20" cy="13" r="2"/>
+</svg>
+<svg class="paw-print" width="24" height="24" viewBox="0 0 24 24" fill="var(--earth-brown)" style="top:98%;left:68%;transform:rotate(315deg) scale(0.8);animation:pawDrift 24s ease-in-out 13.5s infinite">
+  <ellipse cx="12" cy="16" rx="5" ry="4.5"/><circle cx="7" cy="9" r="2.5"/><circle cx="17" cy="9" r="2.5"/><circle cx="4" cy="13" r="2"/><circle cx="20" cy="13" r="2"/>
+</svg>
+
+<nav class="nav" id="mainNav">
+  <a href="index.html" class="nav-logo"><span class="nav-logo-icon">🐾</span><span class="nav-logo-text">Cubix Meow</span></a>
+  <div class="nav-links" id="navLinks">
+    <a href="about.php">Our Story</a>
+    <a href="#story">The Meows</a>
+    <a href="#purrnia">Purrnia</a>
+    <a href="#characters">Characters</a>
+    <a href="#daily-art">Explore</a>
+    <a href="https://www.facebook.com/cubix.meow.rules" target="_blank" rel="noopener">Follow Us</a>
+  </div>
+  <button class="nav-mobile-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+</nav>
+
+<section class="hero">
+  <div class="hero-glow"></div>
+  <img src="purrnia-map-homepage.png" alt="Purrnia Map Homepage" style="width: 80%;"><br>
+  <div class="hero-badge"><span>Welcome to Purrnia</span></div>
+  <h1>Purrnia</h1>
+  <p class="hero-subtitle">The Adventures of Mr. Meow & Mrs. Meow</p>
+  <div class="hero-caption-wrap" id="captionWrap">
+          <span class="hero-caption active" data-index="0">The world purrs. If you are very still and very kind, you can feel it. 🐾✨</span>
+          <span class="hero-caption " data-index="1">Some corners of the world were made for whisker-watching. 😺🏮</span>
+          <span class="hero-caption " data-index="2">Every cobblestone tells a tail worth following. 🐱🏡</span>
+          <span class="hero-caption " data-index="3">Two curious hearts, one big beautiful world. 😸🌍</span>
+          <span class="hero-caption " data-index="4">Wanderlust looks purrfect on us. 🐈🗺️</span>
+          <span class="hero-caption " data-index="5">The smallest things always catch the softest paws. 🐾🪷</span>
+      </div>
+  <div class="hero-cta">
+    <a href="purrnia.php" class="hero-cta-btn">🌍 Explore the World of Purrnia</a>
+  </div>
+  <div class="scroll-indicator">
+    <svg width="24" height="36" viewBox="0 0 24 36" fill="none">
+      <rect x="1" y="1" width="22" height="34" rx="11" stroke="var(--text-muted)" stroke-width="1.5"/>
+      <circle cx="12" cy="10" r="3" fill="var(--warm-orange-soft)"><animate attributeName="cy" values="10;22;10" dur="2.5s" repeatCount="indefinite"/></circle>
+    </svg>
+  </div>
+</section>
+
+<section class="section" id="story">
+  <div class="reveal">
+    <p class="section-label">The First Wanderers</p>
+    <h2 class="section-title">Meet the Meows</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="cats-row" style="margin-top:60px">
+    <div class="cat-card reveal">
+      <div class="cat-face" style="background:radial-gradient(circle at 40% 35%,#f0a84a 0%,#f5c67e 50%,#e08a2e 100%);box-shadow:0 8px 32px rgba(224,138,46,.25),inset 0 -4px 12px rgba(224,138,46,.2)">
+        <div class="ear ear-left" style="border-bottom:32px solid #f0a84a"></div><div class="ear ear-right" style="border-bottom:32px solid #f5c67e"></div>
+        <div class="ear-inner ear-inner-left"></div><div class="ear-inner ear-inner-right"></div>
+        <div class="eye eye-left"><div class="pupil" style="background:#2a5a8c"><div class="pupil-highlight"></div></div></div>
+        <div class="eye eye-right"><div class="pupil" style="background:#2a5a8c"><div class="pupil-highlight"></div></div></div>
+        <div class="nose"></div>
+        <svg class="mouth" width="30" height="12" viewBox="0 0 30 12"><path d="M5 2 Q15 12 15 2" stroke="#c47a73" fill="none" stroke-width="1.5" stroke-linecap="round"/><path d="M15 2 Q15 12 25 2" stroke="#c47a73" fill="none" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <div class="whisker" style="top:84px;left:120px;transform:rotate(-8deg);transform-origin:left center"></div><div class="whisker" style="top:92px;left:120px;transform:rotate(8deg);transform-origin:left center"></div>
+        <div class="whisker" style="top:84px;right:120px;transform:rotate(8deg);transform-origin:right center"></div><div class="whisker" style="top:92px;right:120px;transform:rotate(-8deg);transform-origin:right center"></div>
+        <div class="backpack"><div class="backpack-clasp"></div><div class="backpack-strap"></div></div>
+      </div>
+      <div><h3 class="cat-name">Mr. Meow</h3><p class="cat-desc">The wanderer. Restless paws, wide eyes, always chasing the next horizon.</p></div>
+    </div>
+    <div class="cat-card reveal">
+      <div class="cat-face" style="background:radial-gradient(circle at 40% 35%,#d4a06a 0%,#f0c890 50%,#a67844 100%);box-shadow:0 8px 32px rgba(166,120,68,.25),inset 0 -4px 12px rgba(166,120,68,.2)">
+        <div class="ear ear-left" style="border-bottom:32px solid #d4a06a"></div><div class="ear ear-right" style="border-bottom:32px solid #f0c890"></div>
+        <div class="ear-inner ear-inner-left"></div><div class="ear-inner ear-inner-right"></div>
+        <div class="eye eye-left"><div class="pupil" style="background:#5a3a20"><div class="pupil-highlight"></div></div></div>
+        <div class="eye eye-right"><div class="pupil" style="background:#5a3a20"><div class="pupil-highlight"></div></div></div>
+        <div class="nose"></div>
+        <svg class="mouth" width="30" height="12" viewBox="0 0 30 12"><path d="M5 2 Q15 12 15 2" stroke="#c47a73" fill="none" stroke-width="1.5" stroke-linecap="round"/><path d="M15 2 Q15 12 25 2" stroke="#c47a73" fill="none" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <div class="whisker" style="top:84px;left:120px;transform:rotate(-8deg);transform-origin:left center"></div><div class="whisker" style="top:92px;left:120px;transform:rotate(8deg);transform-origin:left center"></div>
+        <div class="whisker" style="top:84px;right:120px;transform:rotate(8deg);transform-origin:right center"></div><div class="whisker" style="top:92px;right:120px;transform:rotate(-8deg);transform-origin:right center"></div>
+        <div class="flower">
+                      <div class="petal" style="background:#f4a0b0;transform:rotate(0deg) translate(0,-8px);transform-origin:center 8px"></div>
+                      <div class="petal" style="background:#f8c4d0;transform:rotate(72deg) translate(0,-8px);transform-origin:center 8px"></div>
+                      <div class="petal" style="background:#f4a0b0;transform:rotate(144deg) translate(0,-8px);transform-origin:center 8px"></div>
+                      <div class="petal" style="background:#f8c4d0;transform:rotate(216deg) translate(0,-8px);transform-origin:center 8px"></div>
+                      <div class="petal" style="background:#f4a0b0;transform:rotate(288deg) translate(0,-8px);transform-origin:center 8px"></div>
+                    <div class="flower-center"></div>
+        </div>
+      </div>
+      <div><h3 class="cat-name">Mrs. Meow</h3><p class="cat-desc">The dreamer. Gentle heart, quiet eyes, finds beauty in everything.</p></div>
+    </div>
+  </div>
+  <p class="cats-blurb reveal">He was a wanderer who never stayed. She had a quiet garden she never left. One afternoon he walked past her fence, and she opened the gate. They walked out together, and everywhere they went, the world grew beneath their paws.</p>
+  <div class="backstory-teaser reveal">
+    <p class="backstory-text">His backpack holds every treasure from a thousand miles of wandering. Her flower is the garden she chose to carry rather than stay behind. Together, their love became a world.</p>
+    <a href="about.php" class="backstory-link">🐾 Read their full story</a>
+  </div>
+</section>
+
+<section class="section" id="purrnia">
+  <div class="reveal"><p class="section-label">The World</p><h2 class="section-title">Welcome to Purrnia</h2><div class="section-divider"></div></div>
+  <p class="world-intro-text reveal">Purrnia is a world that grew from the love of two small cats who chose each other and walked forward together. Every stone, every stream, every warm gust of wind is an echo of that first morning they stepped through the gate.</p>
+  <div class="world-quote reveal">"The world purrs. It has always purred. If you are very still and very kind, you can feel it in your paws."</div>
+  <p class="section-desc reveal" style="margin-top:48px">Eight regions, each with its own gentle magic, its own creatures, and its own way of being warm.</p>
+  <div class="regions-grid">
+          <div class="region-card reveal" style="transition-delay:0s"><div class="region-glow" style="background:#d4883a"></div><div class="region-icon">🔥</div><h4>Emberwood Thicket</h4><div class="region-framework" style="color:var(--ember-amber)">Hearth-Crafting</div><p>An ancient forest of golden light, empathetic fires, and homes carved into colossal trees. Tea-Cup Foxes sleep on warm pastries.</p></div>
+          <div class="region-card reveal" style="transition-delay:0.06s"><div class="region-glow" style="background:#7b8fb8"></div><div class="region-icon">🌊</div><h4>Lullaby Lochs</h4><div class="region-framework" style="color:var(--lullaby-indigo)">Intuitive Wayfinding</div><p>Terraced lakes under eternal twilight. The water purrs when touched. Bubble-Frogs comfort the lonely.</p></div>
+          <div class="region-card reveal" style="transition-delay:0.12s"><div class="region-glow" style="background:#c9a832"></div><div class="region-icon">🌻</div><h4>Sun-Draped Terraces</h4><div class="region-framework" style="color:var(--terrace-gold)">Generative Cultivation</div><p>Mediterranean hills of perpetual harvest. Plants grow when complimented. Silk-Weaver Bees leave handmade gifts.</p></div>
+          <div class="region-card reveal" style="transition-delay:0.18s"><div class="region-glow" style="background:#c48a8a"></div><div class="region-icon">🪁</div><h4>Chiming Canyons</h4><div class="region-framework" style="color:var(--canyon-rose)">Epistemic Unveiling</div><p>Rose-quartz mesas and crystal geodes. The wind carries you. Kite-Rays swim through the air.</p></div>
+          <div class="region-card reveal" style="transition-delay:0.24s"><div class="region-glow" style="background:#a68ab8"></div><div class="region-icon">❄️</div><h4>Velvet Tundra</h4><div class="region-framework" style="color:var(--tundra-lilac)">Empathetic Transmutation</div><p>Diamond snow that never chills. Auroras drip warm light into healing pools. Woolly Moth-Cats are living blankets.</p></div>
+          <div class="region-card reveal" style="transition-delay:0.3s"><div class="region-glow" style="background:#6a8a6a"></div><div class="region-icon">📜</div><h4>Glimmering Archives</h4><div class="region-framework" style="color:var(--archive-emerald)">Nostalgic Anchoring</div><p>A city of petrified books and floating lanterns. Open a book to feel a stranger's happiest memory.</p></div>
+          <div class="region-card reveal" style="transition-delay:0.36s"><div class="region-glow" style="background:#c49ab0"></div><div class="region-icon">☁️</div><h4>Cloud-Spun Canopy</h4><div class="region-framework" style="color:var(--canopy-pink)">Catenary Weaving</div><p>Walkable clouds sculpted by hand. Aura-Sheep change color with the sky. Rainbow bridges connect islands.</p></div>
+          <div class="region-card reveal" style="transition-delay:0.42s"><div class="region-glow" style="background:#9a5a6a"></div><div class="region-icon">🧵</div><h4>Bramble-Patch Bazaars</h4><div class="region-framework" style="color:var(--bazaar-berry)">Harmonic Synthesis</div><p>Underground markets lit by glowing berries. Broken things mend with gold. Patchwork Badgers find what you've lost.</p></div>
+      </div>
+</section>
+
+<section class="section" id="magic">
+  <div class="reveal"><p class="section-label">The Magic</p><h2 class="section-title">The Cubix Meow</h2><div class="section-divider"></div></div>
+  <p class="magic-intro reveal">The Cubix Meow is the living pulse of Purrnia. A vast web of warm energy that flows beneath the soil, through the water, and between every living creature. It responds to kindness. It strengthens through care. It remembers every good thing anyone ever did.</p>
+  <div class="world-quote reveal">The entire world runs on one premise: the land is only as alive as the love that moves through it.</div>
+  <p class="section-desc reveal" style="margin-top:40px">Eight frameworks. Eight ways to connect with the world's heartbeat.</p>
+  <div class="frameworks-grid">
+          <div class="framework-pill reveal" style="transition-delay:0s"><div class="fw-icon">🕯️</div><h5>Nostalgic Anchoring</h5><div class="fw-theme">Memory &amp; Comfort</div></div>
+          <div class="framework-pill reveal" style="transition-delay:0.05s"><div class="fw-icon">🤝</div><h5>Harmonic Synthesis</h5><div class="fw-theme">Friendship &amp; Trust</div></div>
+          <div class="framework-pill reveal" style="transition-delay:0.1s"><div class="fw-icon">🔍</div><h5>Epistemic Unveiling</h5><div class="fw-theme">Curiosity &amp; Wonder</div></div>
+          <div class="framework-pill reveal" style="transition-delay:0.15s"><div class="fw-icon">💛</div><h5>Empathetic Transmutation</h5><div class="fw-theme">Kindness &amp; Empathy</div></div>
+          <div class="framework-pill reveal" style="transition-delay:0.2s"><div class="fw-icon">🍞</div><h5>Hearth-Crafting</h5><div class="fw-theme">Domesticity &amp; Care</div></div>
+          <div class="framework-pill reveal" style="transition-delay:0.25s"><div class="fw-icon">🧶</div><h5>Catenary Weaving</h5><div class="fw-theme">Connection &amp; Play</div></div>
+          <div class="framework-pill reveal" style="transition-delay:0.3s"><div class="fw-icon">🐾</div><h5>Intuitive Wayfinding</h5><div class="fw-theme">Hope &amp; Surrender</div></div>
+          <div class="framework-pill reveal" style="transition-delay:0.35s"><div class="fw-icon">🌱</div><h5>Generative Cultivation</h5><div class="fw-theme">Stewardship &amp; Nature</div></div>
+      </div>
+</section>
+
+<section class="section" id="characters">
+  <div class="reveal"><p class="section-label">The Inhabitants</p><h2 class="section-title">The Purren of Purrnia</h2><div class="section-divider"></div><p class="section-desc">Soft, round, feline creatures with a Glow over their heart that reveals where their deepest joy lies. Plus the friends who walk beside them.</p></div>
+  <div class="characters-grid">
+          <div class="char-card reveal" style="transition-delay:0s"><div class="char-glow" style="background:#e8944a"></div><div class="char-emoji">🐱</div><h4>Mr. Meow</h4><div class="char-species">Purren</div><div class="char-role" style="color:var(--warm-orange)">First Wanderer</div><p class="char-desc-text">The restless tabby. Carried everything in a backpack, walked toward every horizon, and never knew he was lonely until he stopped.</p></div>
+          <div class="char-card reveal" style="transition-delay:0.06s"><div class="char-glow" style="background:#e4a0a0"></div><div class="char-emoji">🌸</div><h4>Mrs. Meow</h4><div class="char-species">Purren</div><div class="char-role" style="color:var(--rose-soft)">First Wanderer</div><p class="char-desc-text">The quiet calico. Tended a garden she never left, wore its flower behind her ear, and opened the gate the day he walked past.</p></div>
+          <div class="char-card reveal" style="transition-delay:0.12s"><div class="char-glow" style="background:#7a9b6d"></div><div class="char-emoji">🐕</div><h4>Templeton</h4><div class="char-species">Golden Hound</div><div class="char-role" style="color:var(--moss-green)">Cultivator</div><p class="char-desc-text">Names every plant he grows. Falls asleep between the rows. Gives everything away except lunch for himself.</p></div>
+          <div class="char-card reveal" style="transition-delay:0.18s"><div class="char-glow" style="background:#9bbcd4"></div><div class="char-emoji">🐆</div><h4>Maya</h4><div class="char-species">Snow Pard</div><div class="char-role" style="color:var(--sky-soft)">Seeker</div><p class="char-desc-text">Maps the canyons from the top down. Talks to herself in full debates. Wears an ankle bell so she stops startling people.</p></div>
+          <div class="char-card reveal" style="transition-delay:0.24s"><div class="char-glow" style="background:#c9a832"></div><div class="char-emoji">🦁</div><h4>Tony</h4><div class="char-species">Mane-Cat</div><div class="char-role" style="color:var(--terrace-gold)">Keeper</div><p class="char-desc-text">Eyes perpetually half-closed. Reads ancient memory cubes. Radiates warmth so steady that people heal just by sitting near him.</p></div>
+          <div class="char-card reveal" style="transition-delay:0.3s"><div class="char-glow" style="background:#a8c99b"></div><div class="char-emoji">🦥</div><h4>Garro</h4><div class="char-species">Moss Sloth</div><div class="char-role" style="color:var(--moss-light)">Mender</div><p class="char-desc-text">Gives the best hugs in Purrnia. Things grow in his fur. Slows the world down so you can see your own feelings.</p></div>
+          <div class="char-card reveal" style="transition-delay:0.36s"><div class="char-glow" style="background:#7b8fb8"></div><div class="char-emoji">🦫</div><h4>Brappie</h4><div class="char-species">River Bara</div><div class="char-role" style="color:var(--lullaby-indigo)">Harmonist</div><p class="char-desc-text">Knows every name, every tea preference, every heartache in the Bazaars. A living tuning fork for social harmony.</p></div>
+          <div class="char-card reveal" style="transition-delay:0.42s"><div class="char-glow" style="background:#d4883a"></div><div class="char-emoji">🐂</div><h4>Angus</h4><div class="char-species">Highland Woolly</div><div class="char-role" style="color:var(--ember-amber)">Hearthkeeper</div><p class="char-desc-text">Bakes one bread. Tends one fire. Cannot see through his fringe. His hearth has not gone out in living memory.</p></div>
+      </div>
+</section>
+
+<section class="section" id="themes">
+  <div class="reveal"><p class="section-label">What We Believe</p><h2 class="section-title">Seven Truths of Purrnia</h2><div class="section-divider"></div></div>
+  <div class="themes-list">
+          <div class="theme-item reveal" style="transition-delay:0s"><span class="theme-icon">✨</span><span class="theme-text">The world remembers kindness.</span></div>
+          <div class="theme-item reveal" style="transition-delay:0.08s"><span class="theme-icon">💛</span><span class="theme-text">Vulnerability is the source of all strength.</span></div>
+          <div class="theme-item reveal" style="transition-delay:0.16s"><span class="theme-icon">🤝</span><span class="theme-text">No one can do everything alone.</span></div>
+          <div class="theme-item reveal" style="transition-delay:0.24s"><span class="theme-icon">🍞</span><span class="theme-text">Care is the most powerful act.</span></div>
+          <div class="theme-item reveal" style="transition-delay:0.32s"><span class="theme-icon">🌱</span><span class="theme-text">Growth cannot be forced.</span></div>
+          <div class="theme-item reveal" style="transition-delay:0.4s"><span class="theme-icon">💫</span><span class="theme-text">Nothing is ever truly broken.</span></div>
+          <div class="theme-item reveal" style="transition-delay:0.48s"><span class="theme-icon">🐾</span><span class="theme-text">No one is ever truly lost.</span></div>
+      </div>
+</section>
+
+<section class="section" id="daily-art">
+  <div class="reveal"><p class="section-label">Explore the world</p><h2 class="section-title">Places to Discover</h2><div class="section-divider"></div><p class="section-desc">Every region holds quiet secrets, hidden wonders, and places that reward the curious. Here are just a few.</p></div>
+  <div class="locations-grid">
+          <div class="location-card reveal" style="transition-delay:0s"><div class="wash" style="background:radial-gradient(circle at 30% 20%,var(--wash-accent) 0%,transparent 60%)"></div><div class="emoji">📚</div><h4>The Root Library</h4><p>Emberwood Thicket</p></div>
+          <div class="location-card reveal" style="transition-delay:0.05s"><div class="wash" style="background:radial-gradient(circle at 45% 30%,var(--wash-accent) 0%,transparent 60%)"></div><div class="emoji">🌌</div><h4>Star-Map Shallows</h4><p>Lullaby Lochs</p></div>
+          <div class="location-card reveal" style="transition-delay:0.1s"><div class="wash" style="background:radial-gradient(circle at 60% 40%,var(--wash-accent) 0%,transparent 60%)"></div><div class="emoji">🧺</div><h4>The Forgotten Picnic</h4><p>Sun-Draped Terraces</p></div>
+          <div class="location-card reveal" style="transition-delay:0.15s"><div class="wash" style="background:radial-gradient(circle at 75% 50%,var(--wash-accent) 0%,transparent 60%)"></div><div class="emoji">💎</div><h4>The Echoing Geode</h4><p>Chiming Canyons</p></div>
+          <div class="location-card reveal" style="transition-delay:0.2s"><div class="wash" style="background:radial-gradient(circle at 90% 60%,var(--wash-accent) 0%,transparent 60%)"></div><div class="emoji">❄️</div><h4>The Glass Garden</h4><p>Velvet Tundra</p></div>
+          <div class="location-card reveal" style="transition-delay:0.25s"><div class="wash" style="background:radial-gradient(circle at 105% 70%,var(--wash-accent) 0%,transparent 60%)"></div><div class="emoji">🪶</div><h4>The First Draft Desk</h4><p>Glimmering Archives</p></div>
+          <div class="location-card reveal" style="transition-delay:0.3s"><div class="wash" style="background:radial-gradient(circle at 120% 80%,var(--wash-accent) 0%,transparent 60%)"></div><div class="emoji">⛵</div><h4>Slumbering Galleon</h4><p>Cloud-Spun Canopy</p></div>
+          <div class="location-card reveal" style="transition-delay:0.35s"><div class="wash" style="background:radial-gradient(circle at 135% 90%,var(--wash-accent) 0%,transparent 60%)"></div><div class="emoji">🌿</div><h4>Lost and Found Garden</h4><p>Bramble-Patch Bazaars</p></div>
+          <div class="location-card reveal" style="transition-delay:0.4s"><div class="wash" style="background:radial-gradient(circle at 150% 100%,var(--wash-accent) 0%,transparent 60%)"></div><div class="emoji">🌳</div><h4>The Rootmother</h4><p>Hearthstone Commons</p></div>
+          <div class="location-card reveal" style="transition-delay:0.45s"><div class="wash" style="background:radial-gradient(circle at 165% 110%,var(--wash-accent) 0%,transparent 60%)"></div><div class="emoji">🌻</div><h4>The Tanglewood</h4><p>Sun-Draped Terraces</p></div>
+          <div class="location-card reveal" style="transition-delay:0.5s"><div class="wash" style="background:radial-gradient(circle at 180% 120%,var(--wash-accent) 0%,transparent 60%)"></div><div class="emoji">🔥</div><h4>Angus&#039;s Hearth</h4><p>Emberwood Thicket</p></div>
+          <div class="location-card reveal" style="transition-delay:0.55s"><div class="wash" style="background:radial-gradient(circle at 195% 130%,var(--wash-accent) 0%,transparent 60%)"></div><div class="emoji">🐾</div><h4>The Threadways</h4><p>All Regions</p></div>
+      </div>
+  <p class="locations-more reveal">...and countless more quiet secrets waiting to be found.</p>
+</section>
+
+<section class="section">
+  <div class="cta-card reveal"><div class="cta-paw">🐾</div><h2>Follow the Paws</h2><p>Join Mr. Meow and Mrs. Meow on their daily adventures. New art, comics, and stories every day on Facebook.</p><a href="https://www.facebook.com/cubix.meow.rules" target="_blank" rel="noopener noreferrer" class="cta-btn">🐾 Follow on Facebook</a></div>
+</section>
+
+<footer class="footer">
+  <div class="footer-logo"><span>🐾</span><span>Cubix Meow</span></div>
+  <p>Two cats. One world. Endless wonder.</p>
+  <p class="copyright">The world of Purrnia.<br>Made with love for cats and travel.</br> The Showdown - copyright 2026 Cubix Meow</p>
+</footer>
+
+<script>
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 50); }, { passive: true });
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+navToggle.addEventListener('click', () => { navLinks.classList.toggle('open'); });
+const captions = document.querySelectorAll('.hero-caption');
+let current = 0;
+setInterval(() => {
+  captions[current].classList.remove('active');
+  captions[current].classList.add('exit');
+  setTimeout(() => { captions[current].classList.remove('exit'); current = (current + 1) % captions.length; captions[current].classList.add('active'); }, 500);
+}, 4000);
+const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); }); }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+document.querySelectorAll('a[href^="#"]').forEach(anchor => { anchor.addEventListener('click', function(e) { e.preventDefault(); const target = document.querySelector(this.getAttribute('href')); if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); navLinks.classList.remove('open'); } }); });
+</script>
+</body>
+</html>
